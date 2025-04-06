@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insert Coin - Rompecabezas COBOL</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Press Start 2P', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 30px;
+      animation: parpadeo 1.5s infinite;
+    }
+
+    .insert-coin {
+      font-size: 14px;
+      color: #ff0;
+      margin-bottom: 40px;
+      animation: parpadeo 1.2s infinite;
+    }
+
+    .start-button {
+      background-color: #000;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      padding: 12px 24px;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    .start-button:hover {
+      background-color: #003300;
+    }
+
+    @keyframes parpadeo {
+      0% { opacity: 1; }
+      50% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 Rompecabezas COBOL</h1>
+  <div class="insert-coin">INSERT COIN TO START</div>
+  <button class="start-button" onclick="window.location.href='rompecabezas.html'">▶️ START</button>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COBOL Terminal - BBVA</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="terminal">
+    <div id="reloj"></div>
+    <h1>Terminal HOST 🖥️</h1>
+
+  <!-- Botón para ir a la página de juegos -->
+  <div style="margin-bottom: 5px;">
+    <!--button onclick="window.open('juegos.html', '_blank')" class="juegos-btn">🎮 Juegos COBOL</button>-->
+    <a href="juegos.html" class="juegos-btn">🎮 Juegos COBOL</a>
+  </div>
+  
+  <div id="console">
+      <p>> Escribe un comando (<code>help</code> para ver opciones)</p>
+      <input type="text" id="consoleInput" placeholder="comando..." />
+      <div id="consoleOutput"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juegos COBOL</title>
+  <link rel="stylesheet" href="juegos.css" />
+</head>
+<body>
+  <div class="juegos-container">
+    <a href="index.html" class="volver-btn">⬅️ Volver a Terminal</a>
+    
+    <div class="logo-arcade">COBOL ARCADE</div>
+    <h1>🎮 Juegos COBOL</h1>
+    <div class="insert-coin">INSERT COIN</div>
+    <p>Selecciona un juego para comenzar:</p>
+
+    <div class="juegos-lista">
+      <a href="quiz.html" class="juego-card">
+        <h2 class="juego-quiz">🧠 Quiz COBOL</h2>
+        <p class="juego-quiz2">Poné a prueba tus conocimientos de COBOL y Mainframe.</p>
+      </a>
+      <div class="juego-card disabled">
+        <h2>💻 Simulador de Consola</h2>
+        <p>Próximamente: ejecutá comandos en un entorno simulado.</p>
+      </div>
+      <div class="juego-card disabled">
+        <h2>📜 Aventura de Texto</h2>
+        <p>Próximamente: resolvé desafíos COBOL estilo retro.</p>
+      </div>
+      <a href="insert.html" class="juego-card">
+        <h2 class="juego-quiz">🧩 Rompecabezas COBOL</h2>
+        <p class="juego-quiz2">Armá estructuras lógicas COBOL.</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Scripts al final para asegurar que el DOM esté cargado -->
+  <script>
+    // Desactiva los juegos aún no disponibles
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll('.juego-card.disabled').forEach(card => {
+        card.addEventListener('click', e => e.preventDefault());
+      });
+
+      const beep = new Audio('beep.mp3');
+      const clickable = document.querySelectorAll('a, button');
+
+      clickable.forEach(el => {
+        el.addEventListener('click', () => {
+          beep.currentTime = 0;
+          beep.play();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rompecabezas COBOL</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Press Start 2P', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .linea {
+      display: flex;
+      align-items: center;
+      background-color: #001a00;
+      border: 1px solid #00ff00;
+      margin: 5px 0;
+      padding: 10px;
+      width: 100%;
+      max-width: 600px;
+      font-size: 12px;
+    }
+
+    .botones {
+      display: flex;
+      flex-direction: column;
+      margin-right: 10px;
+    }
+
+    .botones button {
+      background-color: #000;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      padding: 4px;
+      margin: 1px 0;
+      cursor: pointer;
+    }
+
+    .botones button:hover {
+      background-color: #003300;
+    }
+
+    .contenido {
+      flex-grow: 1;
+    }
+
+    .button {
+      margin-top: 20px;
+      background-color: #000;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      padding: 10px 20px;
+      font-family: 'Press Start 2P', cursive;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #003300;
+    }
+
+    #mensaje {
+      margin-top: 20px;
+    }
+
+    .volver-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #000;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      padding: 6px 12px;
+      text-decoration: none;
+      font-size: 14px;
+      font-family: "Courier New", Courier, monospace;
+      transition: background-color 0.3s;
+    }
+
+    .volver-btn:hover {
+      background-color: #003300;
+    }
+
+    select {
+      margin-bottom: 20px;
+      padding: 8px;
+      background-color: #000;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      font-family: 'Press Start 2P', cursive;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧩 Rompecabezas COBOL</h1>
+
+  <label for="selector">Selecciona un rompecabezas:</label>
+  <select id="selector" onchange="cambiarRompecabezas()">
+    <option value="0">Condición IF</option>
+    <option value="1">Lectura de archivo</option>
+    <option value="2">Inicialización de variables</option>
+    <option value="3">Perform con condición</option>
+    <option value="4">Evaluar condición</option>
+    <option value="5">Escritura en archivo</option>
+    <option value="6">Lectura de entrada estándar</option>
+    <option value="7">Llamado a subprograma</option>
+    <option value="8">Loop con perform</option>
+    <option value="9">Movimiento de datos</option>
+  </select>
+
+  <div id="contenedor"></div>
+
+  <button class="button" onclick="verificarOrden()">✅ Verificar</button>
+  <p id="mensaje"></p>
+
+  <a href="index.html" class="volver-btn">⬅️ Volver a la consola</a>
+
+  <script>
+    const rompecabezas = [
+      {
+        nombre: "Condición IF",
+        lineas: [
+          "IF WS-EDAD GREATER THAN 18",
+          "   DISPLAY 'ES MAYOR DE EDAD'",
+          "ELSE",
+          "   DISPLAY 'ES MENOR DE EDAD'",
+          "END-IF"
+        ]
+      },
+      {
+        nombre: "Lectura de archivo",
+        lineas: [
+          "OPEN INPUT ARCHIVO",
+          "READ ARCHIVO INTO REGISTRO",
+          "IF NOT END-OF-FILE",
+          "   DISPLAY REGISTRO",
+          "CLOSE ARCHIVO"
+        ]
+      },
+      {
+        nombre: "Inicialización de variables",
+        lineas: [
+          "MOVE ZERO TO WS-NUM1",
+          "MOVE ZERO TO WS-NUM2",
+          "MOVE ZERO TO WS-TOTAL",
+          "COMPUTE WS-TOTAL = WS-NUM1 + WS-NUM2"
+        ]
+      },
+      {
+        nombre: "Perform con condición",
+        lineas: [
+          "PERFORM HASTA-FIN",
+          "   UNTIL WS-CONTADOR > 10",
+          "DISPLAY 'FIN DEL LOOP'"
+        ]
+      },
+      {
+        nombre: "Evaluar condición",
+        lineas: [
+          "EVALUATE TRUE",
+          "WHEN WS-EDAD < 13",
+          "   DISPLAY 'NIÑO'",
+          "WHEN WS-EDAD < 18",
+          "   DISPLAY 'ADOLESCENTE'",
+          "WHEN OTHER",
+          "   DISPLAY 'ADULTO'",
+          "END-EVALUATE"
+        ]
+      },
+      {
+        nombre: "Escritura en archivo",
+        lineas: [
+          "OPEN OUTPUT ARCHIVO",
+          "WRITE REGISTRO FROM WS-DATOS",
+          "CLOSE ARCHIVO"
+        ]
+      },
+      {
+        nombre: "Lectura de entrada estándar",
+        lineas: [
+          "ACCEPT WS-NOMBRE",
+          "DISPLAY 'Hola ' WS-NOMBRE"
+        ]
+      },
+      {
+        nombre: "Llamado a subprograma",
+        lineas: [
+          "CALL 'SUBPROGRAMA' USING WS-PARAMETRO",
+          "IF RETURN-CODE = 0",
+          "   DISPLAY 'OK'",
+          "ELSE",
+          "   DISPLAY 'ERROR'"
+        ]
+      },
+      {
+        nombre: "Loop con perform",
+        lineas: [
+          "PERFORM VARYING I FROM 1 BY 1 UNTIL I > 5",
+          "   DISPLAY 'Iteración' I",
+          "END-PERFORM"
+        ]
+      },
+      {
+        nombre: "Movimiento de datos",
+        lineas: [
+          "INITIALIZE WS-NOMBRE",
+          "MOVE COBOL TO WS-NOMBRE",
+          "DISPLAY WS-NOMBRE"
+        ]
+      }
+    ];
+
+    let rompecabezasActual = 0;
+    let lineasActuales = [];
+
+    function mezclarArray(arr) {
+      return arr
+        .map(valor => ({ valor, orden: Math.random() }))
+        .sort((a, b) => a.orden - b.orden)
+        .map(({ valor }) => valor);
+    }
+
+    function renderizar() {
+      const contenedor = document.getElementById("contenedor");
+      contenedor.innerHTML = "";
+
+      lineasActuales.forEach((linea, i) => {
+        const divLinea = document.createElement("div");
+        divLinea.className = "linea";
+
+        const botones = document.createElement("div");
+        botones.className = "botones";
+
+        const btnArriba = document.createElement("button");
+        btnArriba.textContent = "↑";
+        btnArriba.onclick = () => mover(i, -1);
+
+        const btnAbajo = document.createElement("button");
+        btnAbajo.textContent = "↓";
+        btnAbajo.onclick = () => mover(i, 1);
+
+        botones.appendChild(btnArriba);
+        botones.appendChild(btnAbajo);
+
+        const contenido = document.createElement("div");
+        contenido.className = "contenido";
+        contenido.textContent = linea;
+
+        divLinea.appendChild(botones);
+        divLinea.appendChild(contenido);
+
+        contenedor.appendChild(divLinea);
+      });
+    }
+
+    function mover(i, direccion) {
+      const nuevoIndice = i + direccion;
+      if (nuevoIndice < 0 || nuevoIndice >= lineasActuales.length) return;
+
+      const temp = lineasActuales[i];
+      lineasActuales[i] = lineasActuales[nuevoIndice];
+      lineasActuales[nuevoIndice] = temp;
+
+      renderizar();
+    }
+
+    function verificarOrden() {
+      const mensaje = document.getElementById("mensaje");
+      const correcto = JSON.stringify(lineasActuales) === JSON.stringify(rompecabezas[rompecabezasActual].lineas);
+      mensaje.textContent = correcto
+        ? "✅ ¡Correcto! Código ordenado."
+        : "❌ El orden no es correcto. Intenta de nuevo.";
+    }
+
+    function cambiarRompecabezas() {
+      const selector = document.getElementById("selector");
+      rompecabezasActual = parseInt(selector.value);
+      lineasActuales = mezclarArray([...rompecabezas[rompecabezasActual].lineas]);
+      document.getElementById("mensaje").textContent = "";
+      renderizar();
+    }
+
+    cambiarRompecabezas();
+  </script>
+
+</body>
+</html>
+
+
+
+
+

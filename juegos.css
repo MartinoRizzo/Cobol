@@ -1,0 +1,97 @@
+/* Fondo terminal y tipografía */
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: "Courier New", Courier, monospace;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .juegos-container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .logo-arcade {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #0f0;
+    text-shadow: 0 0 5px #0f0;
+  }
+  
+  h1, p, .insert-coin {
+    text-shadow: 0 0 5px #00ff00;
+  }
+  
+  .insert-coin {
+    animation: blink 1s infinite;
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #00ff00;
+  }
+  
+  .juegos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .juego-card {
+    background-color: #001a00;
+    border: 1px solid #00ff00;
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+  }
+  
+  .juego-quiz {
+    color: rgb(0, 208, 255);
+  }
+
+  .juego-quiz2 {
+    color: rgb(0, 208, 255);
+  }
+
+  .juego-card:hover {
+    background-color: #003300;
+  }
+  
+  .juego-card.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  
+  .volver-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: "Courier New", Courier, monospace;
+    transition: background-color 0.2s;
+  }
+  
+  .volver-btn:hover {
+    background-color: #003300;
+  }
+  
+  /* Parpadeo estilo retro */
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  
